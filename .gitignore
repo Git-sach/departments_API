@@ -1,0 +1,5 @@
+# Ignore les modules Node.js installés localement
+node_modules/
+
+# Ignore les fichiers générés lors de la compilation ou de la construction
+dist/

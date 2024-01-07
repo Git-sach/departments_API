@@ -1,0 +1,12 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "exec": "ts-node ./src/index.ts",
+  "env": {
+    "PORT": 3000,
+    "DB_USER": "root",
+    "DB_PASSWORD": "Escalademroc69&",
+    "DB_HOST": "localhost",
+    "DB_NAME": "departments_api"
+  }
+}
