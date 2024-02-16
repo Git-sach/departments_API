@@ -1,11 +1,24 @@
 import { Department } from "../database/model/department";
+import { Region } from "../database/model/region";
 
 export class DepartmentModel {
-    departmentListe(): Promise<any> {
-        return Department.findAll();
-    }
-}
+  async departmentListe(): Promise<Department[]> {
+    const departmentsResponse = await Department.findAll({
+      include: [
+        {
+          model: Region,
+          attributes: { exclude: ["id"] },
+        },
+      ],
+      raw: true,
+      attributes: { exclude: ["regionId"] },
+    });
 
-// export const departmentListe = () => {
-//     return Department.findAll();
-// };
+    departmentsResponse.forEach((department: any) => {
+      department["region"] = department["region.name"];
+      delete department["region.name"];
+    });
+
+    return departmentsResponse;
+  }
+}
